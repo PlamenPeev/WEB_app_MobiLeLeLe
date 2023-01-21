@@ -3,17 +3,30 @@ package com.example.web_app_mobilelele.mobiLeLeLe.domain.entities;
 import com.example.web_app_mobilelele.mobiLeLeLe.domain.enums.Engine;
 import com.example.web_app_mobilelele.mobiLeLeLe.domain.enums.Transmission;
 import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Entity
 @Table(name = "offers")
-public class Offer extends BaseEntity {
+public class Offer {
+
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+            name = "UUID",
+    strategy = "org.hibernate.id.UUIDGenerator")
+    //@Type(type = "uuid-char")
+    private UUID id;
 
     @Column
     private String description;
 
+    @Column
     @Enumerated(EnumType.STRING)
     private Engine engine;
 
@@ -23,14 +36,14 @@ public class Offer extends BaseEntity {
     @Column
     private Integer mileage;
 
-    @Column
-    private Double price;
+    @Column(nullable = false)
+    private BigDecimal price;
 
     @Enumerated(EnumType.STRING)
     private Transmission transmission;
 
     @Column
-    private String year;
+    private int year;
 
     @Column
     private LocalDate created;
@@ -44,94 +57,111 @@ public class Offer extends BaseEntity {
     @ManyToOne
     private User seller;
 
-    public Offer() {
+    public UUID getId() {
+        return id;
+    }
+
+    public Offer setId(UUID id) {
+        this.id = id;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public Offer setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     public Engine getEngine() {
         return engine;
     }
 
-    public void setEngine(Engine engine) {
+    public Offer setEngine(Engine engine) {
         this.engine = engine;
+        return this;
     }
 
     public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public Offer setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        return this;
     }
 
     public Integer getMileage() {
         return mileage;
     }
 
-    public void setMileage(Integer mileage) {
+    public Offer setMileage(Integer mileage) {
         this.mileage = mileage;
+        return this;
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public Offer setPrice(BigDecimal price) {
         this.price = price;
+        return this;
     }
 
     public Transmission getTransmission() {
         return transmission;
     }
 
-    public void setTransmission(Transmission transmission) {
+    public Offer setTransmission(Transmission transmission) {
         this.transmission = transmission;
+        return this;
     }
 
-    public String getYear() {
+    public int getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public Offer setYear(int year) {
         this.year = year;
+        return this;
     }
 
     public LocalDate getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDate created) {
+    public Offer setCreated(LocalDate created) {
         this.created = created;
+        return this;
     }
 
     public LocalDate getModified() {
         return modified;
     }
 
-    public void setModified(LocalDate modified) {
+    public Offer setModified(LocalDate modified) {
         this.modified = modified;
+        return this;
     }
 
     public Model getModel() {
         return model;
     }
 
-    public void setModel(Model model) {
+    public Offer setModel(Model model) {
         this.model = model;
+        return this;
     }
 
     public User getSeller() {
         return seller;
     }
 
-    public void setSeller(User seller) {
+    public Offer setSeller(User seller) {
         this.seller = seller;
+        return this;
     }
 }

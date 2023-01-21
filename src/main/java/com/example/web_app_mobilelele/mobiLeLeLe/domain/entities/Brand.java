@@ -19,31 +19,33 @@ public class Brand extends BaseEntity {
     @Column
     private LocalDate modified;
 
-    public Brand() {
-    }
+
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Brand setName(String name) {
         this.name = name;
+        return this;
     }
 
     public LocalDate getCreated() {
         return created;
     }
 
-    public void setCreated(LocalDate created) {
+    public Brand setCreated(LocalDate created) {
         this.created = created;
+        return this;
     }
 
     public LocalDate getModified() {
         return modified;
     }
 
-    public void setModified(LocalDate modified) {
+    public Brand setModified(LocalDate modified) {
         this.modified = modified;
+        return this;
     }
 }
 
