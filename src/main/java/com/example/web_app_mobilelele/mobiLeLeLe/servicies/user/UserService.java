@@ -1,6 +1,7 @@
 package com.example.web_app_mobilelele.mobiLeLeLe.servicies.user;
 
 import com.example.web_app_mobilelele.mobiLeLeLe.domain.dtos.UserLoginDTO;
+import com.example.web_app_mobilelele.mobiLeLeLe.domain.dtos.UserRegisterDTO;
 import com.example.web_app_mobilelele.mobiLeLeLe.domain.entities.User;
 import com.example.web_app_mobilelele.mobiLeLeLe.domain.user.CurrentUser;
 import com.example.web_app_mobilelele.mobiLeLeLe.repositories.UserRepository;
@@ -31,7 +32,21 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
+public void registerAndLogin(UserRegisterDTO userRegisterDTO){
 
+
+        User newUser = new User().
+                setActive(true).
+                setEmail(userRegisterDTO.getEmail()).
+                setFirstName(userRegisterDTO.getFirstName()).
+                setLastName(userRegisterDTO.getLastName()).
+                setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
+
+       newUser =  userRepository.save(newUser);
+
+    login(newUser);
+
+    }
 
     public boolean login(UserLoginDTO loginDTO) {
         Optional<User> userOpt = userRepository
