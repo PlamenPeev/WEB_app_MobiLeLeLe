@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 
-
 @Service
 public class UserService {
 
@@ -28,6 +27,8 @@ public class UserService {
         this.currentUser = currentUser;
     }
 
+
+
     public boolean login(UserLoginDTO loginDTO) {
         Optional<User> userOpt = userRepository
                 .findByEmail(loginDTO.getUsername());
@@ -39,21 +40,21 @@ public class UserService {
 
         boolean success = userOpt.get().getPassword().equals(loginDTO.getPassword());
 
-        if(success){
-login(userOpt.get());
-        }else{
-logout();
+        if (success) {
+            login(userOpt.get());
+        } else {
+            logout();
         }
         return success;
     }
 
-    private void login(User user){
-currentUser.
-        setLoggedIn(true).
-        setName(user.getFirstName() + " " + user.getLastName());
+    private void login(User user) {
+        currentUser.
+                setLoggedIn(true).
+                setName(user.getFirstName() + " " + user.getLastName());
     }
 
-    private void logout(){
-currentUser.clear();
+    public void logout() {
+        currentUser.clear();
     }
 }
