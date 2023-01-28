@@ -12,7 +12,7 @@ import java.util.List;
 public class User extends BaseEntity {
 
     @Column(nullable = false)
-    private String username;
+    private String email;
 
     @Column
     private String password;
@@ -39,13 +39,12 @@ public class User extends BaseEntity {
     private LocalDate modified;
 
 
-
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public User setUsername(String username) {
-        this.username = username;
+    public User setEmail(String email) {
+        this.email = email;
         return this;
     }
 
@@ -85,7 +84,14 @@ public class User extends BaseEntity {
         return this;
     }
 
+    public List<UserRole> getUserRoles() {
+        return userRoles;
+    }
 
+    public User setUserRoles(List<UserRole> userRoles) {
+        this.userRoles = userRoles;
+        return this;
+    }
 
     public String getImageUrl() {
         return imageUrl;
@@ -114,24 +120,10 @@ public class User extends BaseEntity {
         return this;
     }
 
-    public User addRole(UserRole userRole){
-        this.userRoles.add(userRole);
-        return this;
-    }
-
-    public List<UserRole> getUserRoles() {
-        return userRoles;
-    }
-
-    public User setUserRoles(List<UserRole> userRoles) {
-        this.userRoles = userRoles;
-        return this;
-    }
-
     @Override
     public String toString() {
         return "User{" +
-                "username='" + username + '\'' +
+                "email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
