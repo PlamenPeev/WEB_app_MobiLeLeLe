@@ -42,9 +42,8 @@ public void registerAndLogin(UserRegisterDTO userRegisterDTO){
                 setLastName(userRegisterDTO.getLastName()).
                 setPassword(passwordEncoder.encode(userRegisterDTO.getPassword()));
 
-       newUser =  userRepository.save(newUser);
-
-    login(newUser);
+       this.userRepository.save(newUser);
+       login(newUser);
 
     }
 
