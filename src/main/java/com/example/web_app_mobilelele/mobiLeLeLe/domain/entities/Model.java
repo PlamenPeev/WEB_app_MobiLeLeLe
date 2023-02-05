@@ -4,6 +4,8 @@ import com.example.web_app_mobilelele.mobiLeLeLe.domain.enums.ModelCategory;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "models")
@@ -16,7 +18,7 @@ public class Model extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private ModelCategory category;
 
-    @Column(name ="image_url", nullable = false)
+    @Column(name = "image_url", nullable = false)
     private String imageUrl;    // – the url of image with size between 8 and 512 characters.
 
     @Column(name = "start_year")
@@ -33,7 +35,6 @@ public class Model extends BaseEntity {
 
     @ManyToOne
     private Brand brand;
-
 
 
     public String getName() {

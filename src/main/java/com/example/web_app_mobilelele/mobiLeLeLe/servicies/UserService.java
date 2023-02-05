@@ -1,4 +1,4 @@
-package com.example.web_app_mobilelele.mobiLeLeLe.servicies.user;
+package com.example.web_app_mobilelele.mobiLeLeLe.servicies;
 
 import com.example.web_app_mobilelele.mobiLeLeLe.domain.dtos.UserLoginDTO;
 import com.example.web_app_mobilelele.mobiLeLeLe.domain.dtos.UserRegisterDTO;
@@ -73,7 +73,8 @@ public void registerAndLogin(UserRegisterDTO userRegisterDTO){
     private void login(User user) {
         currentUser.
                 setLoggedIn(true).
-                setName(user.getFirstName() + " " + user.getLastName());
+                setName(user.getFirstName() + " " + user.getLastName())
+                .setEmail(user.getEmail());
     }
 
     public void logout() {

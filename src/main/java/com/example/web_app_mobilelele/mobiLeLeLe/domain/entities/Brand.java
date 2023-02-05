@@ -1,10 +1,10 @@
 package com.example.web_app_mobilelele.mobiLeLeLe.domain.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "brands")
@@ -19,7 +19,8 @@ public class Brand extends BaseEntity {
     @Column
     private LocalDate modified;
 
-
+    @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER)
+    private Set<Model> models;
 
     public String getName() {
         return name;
@@ -45,6 +46,15 @@ public class Brand extends BaseEntity {
 
     public Brand setModified(LocalDate modified) {
         this.modified = modified;
+        return this;
+    }
+
+    public Set<Model> getModels() {
+        return models;
+    }
+
+    public Brand setModels(Set<Model> models) {
+        this.models = models;
         return this;
     }
 }
